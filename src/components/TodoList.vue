@@ -1,12 +1,15 @@
 <template>
   <div class="main">
-    <todo-create v-on:create-todo="createTodo"></todo-create>
+    <todo-create
+      v-on:create-todo="createTodo">
+    </todo-create>
     <todo
       v-for="(todo, index) in todos"
       v-bind:todo="todo"
       v-bind:key="index"
       v-on:complete-todo="completeTodo(todo)"
-      v-on:delete-todo="deleteTodo(todo)"></todo>
+      v-on:delete-todo="deleteTodo(todo)">
+    </todo>
   </div>
 </template>
 

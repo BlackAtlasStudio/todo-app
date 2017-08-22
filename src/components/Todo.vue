@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <div class="content">
+    <div class="content" v-show="!isEditing">
       <div class="header">
         {{ todo.title }}
       </div>
@@ -14,16 +14,34 @@
       <a class="todo-status red" v-on:click="completeTodo(todo)" v-show="!todo.done">
         Incomplete
       </a>
-      <div class="fa fa-pencil" aria-hidden="true"></div>
+      <div class="fa fa-pencil" aria-hidden="true" v-on:click="edit()"></div>
       <div class="fa fa-trash" aria-hidden="true" v-on:click="deleteTodo(todo)"></div>
+    </div>
+    <div class="content" v-show="isEditing">
+      <div><textarea rows="1" class="input" v-model="todo.title" v-bind:placeholder="todo.title"></textarea></div>
+      <div><textarea rows="1" class="input" v-model="todo.project" v-bind:placeholder="todo.project"></textarea></div>
+      <div class="space"></div>
+      <div class="fa fa-check" aria-hidden="true" v-on:click="updateTodo(todo)"></div>
     </div>
   </div>
 </template>
 
 <script type="text/javascript">
   export default {
+    data () {
+      return {
+        isEditing: false
+      }
+    },
     props: ['todo'],
     methods: {
+      edit () {
+        this.isEditing = true
+      },
+      updateTodo (todo) {
+        this.isEditing = false
+        this.$emit('update-todo', todo)
+      },
       completeTodo (todo) {
         this.$emit('complete-todo', todo)
       },
@@ -35,6 +53,15 @@
 </script>
 
 <style>
+.input {
+  font-size: 1.1em;
+  margin: 5px;
+  resize: none;
+  border: 1px solid #888;
+  box-shadow: 0px 0px 5px #aaa;
+  padding: 5px;
+}
+
 .card {
   border: 1px solid #888;
   border-radius: 0px;

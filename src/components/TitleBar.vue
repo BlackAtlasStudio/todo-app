@@ -1,6 +1,9 @@
 <template>
-  <div class="full-header">
-    <h1 class="title">{{ titlebar }}</h1>
+  <div>
+    <div class="full-header">
+      <h1 class="title">{{ titlebar }}</h1>
+    </div>
+    <div class="header-space"></div>
   </div>
 </template>
 
@@ -14,6 +17,9 @@
   .full-header {
     width: 100%;
     box-shadow: 0px 2px 5px #aaa;
+    position: fixed;
+    background-color: white;
+    z-index: 1000;
   }
 
   .title {
@@ -25,5 +31,9 @@
   h1 {
     margin: 0px;
     vertical-align: middle;
+  }
+
+  .header-space {
+    height: 4em;
   }
 </style>

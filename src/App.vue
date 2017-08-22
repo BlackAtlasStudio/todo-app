@@ -1,19 +1,31 @@
 <template>
   <div id="app">
+    <title-bar v-bind:titlebar="titlebar"></title-bar>
+    <todo-list-stats v-bind:todos="todos"></todo-list-stats>
     <todo-list v-bind:todos="todos"></todo-list>
   </div>
 </template>
 
 <script>
 import TodoList from './components/TodoList'
+import TitleBar from './components/TitleBar'
+import TodoListStats from './components/TodoListStats'
+import { EventBus } from './event-bus.js'
+
+EventBus.$on('error', function (message) {
+  console.log(message)
+})
 
 export default {
   name: 'app',
   components: {
-    TodoList
+    TitleBar,
+    TodoList,
+    TodoListStats
   },
   data () {
     return {
+      titlebar: 'Todo App',
       todos: [{
         title: 'Todo A',
         project: 'Project A',
@@ -38,6 +50,9 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #444;
-  margin-top: 10px;
+}
+
+body {
+  margin: 0px;
 }
 </style>

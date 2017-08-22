@@ -17,10 +17,9 @@
 
 <style>
   .side-card {
-    position: absolute;
     width: 15%;
-  }
-  .container {
-    padding:10px;
+    top: 5em;
+    left: 1em;
+    position: fixed;
   }
 </style>

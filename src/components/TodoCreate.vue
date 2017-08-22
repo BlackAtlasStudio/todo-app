@@ -17,6 +17,8 @@
 </template>
 
 <script type="text/javascript">
+  import { EventBus } from '../event-bus.js'
+
   export default {
     data () {
       return {
@@ -26,7 +28,11 @@
     },
     methods: {
       createTodo () {
-        this.$emit('create-todo', {title: this.title, project: this.project, done: false})
+        if (this.title !== '') {
+          this.$emit('create-todo', {title: this.title, project: this.project, done: false})
+        } else {
+          EventBus.$emit('error', 'Please specify at least a title for the Todo!')
+        }
       }
     }
   }
