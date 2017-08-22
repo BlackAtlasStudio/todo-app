@@ -15,7 +15,7 @@
         Incomplete
       </a>
       <div class="fa fa-pencil" aria-hidden="true"></div>
-      <div class="fa fa-trash" aria-hidden="true"></div>
+      <div class="fa fa-trash" aria-hidden="true" v-on:click="deleteTodo(todo)"></div>
     </div>
   </div>
 </template>
@@ -26,6 +26,9 @@
     methods: {
       completeTodo (todo) {
         this.$emit('complete-todo', todo)
+      },
+      deleteTodo (todo) {
+        this.$emit('delete-todo', todo)
       }
     }
   }
@@ -34,8 +37,8 @@
 <style>
 .card {
   border: 1px solid #888;
-  border-radius: 10px;
-  box-shadow: 0px 0px 5px #444;
+  border-radius: 0px;
+  box-shadow: 0px 0px 5px #aaa;
   padding: 10px;
   margin: 10px;
 }
